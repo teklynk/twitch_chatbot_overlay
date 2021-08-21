@@ -1,0 +1,9 @@
+# Twitch chat bot overlay
+
+URL parameters:
+bot=your bot name
+channel=your main twitch channel
+http://example.com/bot.html?bot=coolbot&channel=MrStreamer
+
+# Sample
+![sample1](https://github.com/teklynk/twitch_chatbot_overlay/blob/main/sample1.png?raw=true)
