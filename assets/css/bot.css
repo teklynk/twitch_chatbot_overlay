@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 html, body {
     background-color: rgba(0, 0, 0, 0);
     margin: 0;
     padding: 0;
-    font-family: Ubuntu;
+    font-family: 'VT323', monospace;
     overflow: hidden;
 }
 
@@ -33,11 +35,11 @@ img.emoticon {
 #notif {
     width: 600px;
     height: 85px;
-    color: #fff;
-    border-radius: 10px;
+    color: #41FF00;
+    border-radius: 5px;
     text-shadow: 1px 1px #000 !important;
-    background: #33127d;
-    font-size: 16px;
+    background: #282828;
+    font-size: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,7 +48,7 @@ img.emoticon {
     right: -600px;
     overflow: hidden;
     z-index: -99;
-    text-align: center;
+    text-align: left;
 }
 
 @keyframes movein {

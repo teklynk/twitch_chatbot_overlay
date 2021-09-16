@@ -91,6 +91,10 @@ client.on('message', (channel, tags, message, self) => {
     let chatmessage = message.replace(/(<([^>]+)>)/ig, "");
     let chatemotes = tags.emotes;
 
+    // Ignore echoed messages.
+    if (self) return;
+    //if (self || !message.startsWith('!')) return;
+
     msgCount = msgCount + 1;
 
     if (chatname === botName) {
