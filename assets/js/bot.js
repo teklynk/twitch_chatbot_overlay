@@ -8,17 +8,30 @@ function getUrlParameter(name) {
 let botName = getUrlParameter('bot');
 let channelName = getUrlParameter('channel');
 
-//console.log(channelName);
+let timer = setInterval(timeSleep, 1000); //seconds
+let timer_timeOut = setInterval(timeOut, 1000); //seconds
 
-let timer = setInterval(timerIncrement, 1000); //seconds
-
-function timerIncrement() {
+function timeSleep() {
 
     idleTime = idleTime + 1;
 
-    if (idleTime === 600) { //600 seconds = 10mins
+    if (idleTime === 300) { //5mins
 
         document.getElementById('imgSrc').src = 'assets/images/robot-sleep.gif';
+
+    }
+
+}
+
+function timeOut() {
+
+    if (idleTime === 5) { //5 seconds
+
+        document.getElementById('notif').innerHTML = '';
+        document.getElementById('notif').classList.remove('visible');
+        document.getElementById('arrow').classList.remove('visible');
+        document.getElementById('imgSrc').classList.remove('visible');
+        document.getElementById('imgSrc').src = 'assets/images/robot.gif';
 
     }
 
@@ -65,7 +78,7 @@ function formatEmotes(text, emotes) {
                         return ''
                     });
                 splitText = splitText.slice(0, mote[0]).concat(empty).concat(splitText.slice(mote[1] + 1, splitText.length));
-                splitText.splice(mote[0], 1, '<img class="emoticon" src="//static-cdn.jtvnw.net/emoticons/v1/' + i + '/3.0">');
+                splitText.splice(mote[0], 1, '<img class="emoticon" src="https://static-cdn.jtvnw.net/emoticons/v2/' + i + '/default/dark/1.0">');
             }
         }
     }
@@ -98,7 +111,9 @@ client.on('message', (channel, tags, message, self) => {
 
         idleTime = 0;
         timer = 0;
+        timer_timeOut = 0;
         clearInterval(timer);
+        clearInterval(timer_timeOut);
 
         document.getElementById('notif').innerHTML = showEmotes ? formatEmotes(chatmessage, chatemotes) : htmlEntities(chatmessage);
         document.getElementById('notif').classList.add('visible');
@@ -111,19 +126,13 @@ client.on('message', (channel, tags, message, self) => {
             document.getElementById('imgSrc').src = 'assets/images/robot-run.gif';
         }
 
-        setTimeout(function () {
-            document.getElementById('notif').innerHTML = '';
-            document.getElementById('notif').classList.remove('visible');
-            document.getElementById('arrow').classList.remove('visible');
-            document.getElementById('imgSrc').classList.remove('visible');
-            document.getElementById('imgSrc').src = 'assets/images/robot.gif';
-        }, 3000);
-
     } else {
 
         idleTime = 0;
         timer = 0;
+        timer_timeOut = 0;
         clearInterval(timer);
+        clearInterval(timer_timeOut);
 
         document.getElementById('notif').innerHTML = '';
         document.getElementById('notif').classList.remove('visible');
