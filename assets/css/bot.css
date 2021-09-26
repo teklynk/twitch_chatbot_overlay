@@ -32,10 +32,10 @@ img.emoticon {
 
 #notif {
     width: 600px;
-    color: #41FF00;
+    color: #eee;
     border-radius: 5px;
     text-shadow: 1px 1px #000 !important;
-    background: #282828;
+    background: #ff07077a;
     font-size: 24px;
     display: flex;
     justify-content: center;
@@ -57,6 +57,6 @@ img.emoticon {
     position: absolute;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    border-left: 15px solid #282828;
+    border-left: 15px solid #ff07077a;
     visibility: hidden;
 }
