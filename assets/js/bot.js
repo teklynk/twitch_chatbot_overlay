@@ -117,7 +117,7 @@ client.on('message', (channel, tags, message, self) => {
             document.getElementById('arrow').classList.remove('visible');
             document.getElementById('imgSrc').classList.remove('visible');
             document.getElementById('imgSrc').src = 'assets/images/robot.gif';
-        }, 5000);
+        }, 3000);
 
     } else {
 
