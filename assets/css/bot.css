@@ -27,14 +27,11 @@ img.emoticon {
 }
 
 .visible {
-    overflow: hidden;
-    padding: 0 12px 0 12px;
-    animation: movein 0.7s ease forwards, moveout 0.7s 5s ease forwards;
+    visibility: visible !important;
 }
 
 #notif {
     width: 600px;
-    height: 85px;
     color: #41FF00;
     border-radius: 5px;
     text-shadow: 1px 1px #000 !important;
@@ -45,26 +42,21 @@ img.emoticon {
     align-items: center;
     position: fixed;
     top: 12px;
-    right: -600px;
+    right: 92px;
     overflow: hidden;
-    z-index: -99;
     text-align: left;
+    visibility: hidden;
+    padding: 12px;
 }
 
-@keyframes movein {
-    from {
-        right: -600px;
-    }
-    to {
-        right: 24px;
-    }
-}
-
-@keyframes moveout {
-    from {
-        right: 24px;
-    }
-    to {
-        right: -600px;
-    }
+#arrow {
+    display: inline-block;
+    background: transparent;
+    vertical-align: top;
+    margin-top: 30px;
+    position: absolute;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid #282828;
+    visibility: hidden;
 }

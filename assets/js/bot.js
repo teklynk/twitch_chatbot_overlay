@@ -8,24 +8,6 @@ function getUrlParameter(name) {
 let botName = getUrlParameter('bot');
 let channelName = getUrlParameter('channel');
 
-//console.log(channelName);
-
-let timer = setInterval(timerIncrement, 1000); //seconds
-
-function timerIncrement() {
-
-    idleTime = idleTime + 1;
-
-    //console.log(idleTime);
-
-    if (idleTime === 600) { //600 seconds = 10mins
-
-        document.getElementById('imgSrc').src = 'assets/images/robot-sleep.gif';
-
-    }
-
-}
-
 function htmlEntities(html) {
     function it() {
         return html.map(function (n, i, arr) {
@@ -81,7 +63,6 @@ const client = new tmi.Client({
 
 client.connect();
 
-let idleTime = 0;
 let msgCount = 0;
 let showEmotes = true;
 
@@ -93,21 +74,17 @@ client.on('message', (channel, tags, message, self) => {
 
     // Ignore echoed messages.
     if (self) return;
-    //if (self || !message.startsWith('!')) return;
 
     msgCount = msgCount + 1;
 
     if (chatname === botName) {
 
-        idleTime = 0;
-        timer = 0;
-        clearInterval(timer);
-
         document.getElementById('notif').innerHTML = showEmotes ? formatEmotes(chatmessage, chatemotes) : htmlEntities(chatmessage);
         document.getElementById('notif').classList.add('visible');
         document.getElementById('imgSrc').classList.add('visible');
+        document.getElementById('arrow').classList.add('visible');
 
-        if (msgCount % 5 === 0) {
+        if (msgCount % 10 === 0) {
             document.getElementById('imgSrc').src = 'assets/images/robot-fire.gif';
         } else {
             document.getElementById('imgSrc').src = 'assets/images/robot-run.gif';
@@ -116,21 +93,17 @@ client.on('message', (channel, tags, message, self) => {
         setTimeout(function () {
             document.getElementById('notif').innerHTML = '';
             document.getElementById('notif').classList.remove('visible');
+            document.getElementById('arrow').classList.remove('visible');
             document.getElementById('imgSrc').classList.remove('visible');
             document.getElementById('imgSrc').src = 'assets/images/robot.gif';
-        }, 5500);
+        }, 5000);
 
     } else {
 
-        idleTime = 0;
-        timer = 0;
-        clearInterval(timer);
-
         document.getElementById('notif').innerHTML = '';
         document.getElementById('notif').classList.remove('visible');
+        document.getElementById('arrow').classList.remove('visible');
         document.getElementById('imgSrc').classList.remove('visible');
         document.getElementById('imgSrc').src = 'assets/images/robot.gif';
-
     }
-
 });
