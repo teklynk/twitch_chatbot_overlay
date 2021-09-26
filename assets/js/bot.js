@@ -8,6 +8,22 @@ function getUrlParameter(name) {
 let botName = getUrlParameter('bot');
 let channelName = getUrlParameter('channel');
 
+//console.log(channelName);
+
+let timer = setInterval(timerIncrement, 1000); //seconds
+
+function timerIncrement() {
+
+    idleTime = idleTime + 1;
+
+    if (idleTime === 600) { //600 seconds = 10mins
+
+        document.getElementById('imgSrc').src = 'assets/images/robot-sleep.gif';
+
+    }
+
+}
+
 function htmlEntities(html) {
     function it() {
         return html.map(function (n, i, arr) {
@@ -63,6 +79,7 @@ const client = new tmi.Client({
 
 client.connect();
 
+let idleTime = 0;
 let msgCount = 0;
 let showEmotes = true;
 
@@ -78,6 +95,10 @@ client.on('message', (channel, tags, message, self) => {
     msgCount = msgCount + 1;
 
     if (chatname === botName) {
+
+        idleTime = 0;
+        timer = 0;
+        clearInterval(timer);
 
         document.getElementById('notif').innerHTML = showEmotes ? formatEmotes(chatmessage, chatemotes) : htmlEntities(chatmessage);
         document.getElementById('notif').classList.add('visible');
@@ -99,6 +120,10 @@ client.on('message', (channel, tags, message, self) => {
         }, 5000);
 
     } else {
+
+        idleTime = 0;
+        timer = 0;
+        clearInterval(timer);
 
         document.getElementById('notif').innerHTML = '';
         document.getElementById('notif').classList.remove('visible');
