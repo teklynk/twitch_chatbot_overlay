@@ -22,8 +22,8 @@ img {
 }
 
 img.emoticon {
-    max-width: 40px;
-    margin-left: 12px;
+    max-width: 56px;
+    margin-left: 4px;
 }
 
 .visible {
@@ -46,7 +46,7 @@ img.emoticon {
     overflow: hidden;
     text-align: left;
     visibility: hidden;
-    padding: 12px;
+    padding: 14px;
 }
 
 #arrow {
