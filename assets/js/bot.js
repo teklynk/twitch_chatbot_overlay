@@ -78,7 +78,7 @@ function formatEmotes(text, emotes) {
                         return ''
                     });
                 splitText = splitText.slice(0, mote[0]).concat(empty).concat(splitText.slice(mote[1] + 1, splitText.length));
-                splitText.splice(mote[0], 1, '<img class="emoticon" src="https://static-cdn.jtvnw.net/emoticons/v2/' + i + '/default/dark/1.0">');
+                splitText.splice(mote[0], 1, '<img class="emoticon" src="https://static-cdn.jtvnw.net/emoticons/v2/' + i + '/default/dark/3.0">');
             }
         }
     }
@@ -90,7 +90,7 @@ const client = new tmi.Client({
     channels: [channelName]
 });
 
-client.connect();
+client.connect().catch(console.error);
 
 let idleTime = 0;
 let msgCount = 0;
