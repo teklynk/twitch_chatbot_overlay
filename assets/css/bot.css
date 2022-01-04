@@ -22,9 +22,8 @@ img {
 }
 
 img.emoticon {
-    max-width: 56px;
+    max-width: 24px;
     margin-left: 4px;
-    display: none;
 }
 
 .visible {
@@ -32,7 +31,7 @@ img.emoticon {
 }
 
 #notif {
-    max-width: 400px;
+    max-width: 800px;
     color: #fff;
     border-radius: 25px;
     text-shadow: 1px 1px #000 !important;

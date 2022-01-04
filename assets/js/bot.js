@@ -5,8 +5,16 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
-let botName = getUrlParameter('bot');
-let channelName = getUrlParameter('channel');
+let botName = getUrlParameter('bot').toLowerCase().trim();
+let channelName = getUrlParameter('channel').toLowerCase().trim();
+
+if (channelName === '') {
+    alert('channel is not set in the URL');
+}
+
+if (botName === '') {
+    alert('bot is not set in the URL');
+}
 
 let timer = setInterval(timeSleep, 1000); //seconds
 let timer_timeOut = setInterval(timeOut, 1000); //seconds
@@ -70,7 +78,7 @@ function formatEmotes(text, emotes) {
         let e = emotes[i];
         for (let j in e) {
             let mote = e[j];
-            if (typeof mote == 'string') {
+            if (typeof mote === 'string') {
                 mote = mote.split('-');
                 mote = [parseInt(mote[0]), parseInt(mote[1])];
                 let length = mote[1] - mote[0],
@@ -98,12 +106,20 @@ let showEmotes = true;
 
 client.on('message', (channel, tags, message, self) => {
 
+    // Ignore echoed messages.
+    if (self) {
+        return false;
+    }
+
+    // Ignore if currently playing an alert
+    if (document.getElementById('notif').classList.contains('visible')) {
+        console.log('currently playing alert');
+        return false;
+    }
+
     let chatname = `${tags['display-name']}`;
     let chatmessage = message.replace(/(<([^>]+)>)/ig, "");
     let chatemotes = tags.emotes;
-
-    // Ignore echoed messages.
-    if (self) return;
 
     msgCount = msgCount + 1;
 
